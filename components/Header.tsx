@@ -40,21 +40,24 @@ function Header() {
               {!isDashboard && (
                 <Link href="/dashboard">
                   <Button 
-                    className="rounded-full  bg-blue-600 hover:from-blue-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg"
+                    className="rounded-full bg-blue-600 hover:from-blue-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg"
                   >
                     Dashboard
                   </Button>
                 </Link>
               )}
-              <div className="border-l border-border/40 h-6 mx-2"></div>
-              <UserButton 
-                appearance={{
-                  elements: {
-                    avatarBox: "w-10 h-10 border-2 border-border/30",
-                    userButtonPopoverCard: "bg-background/80 backdrop-blur-md"
-                  }
-                }}
-              />
+              <div className="relative">
+                <UserButton 
+                  appearance={{
+                    elements: {
+                      avatarBox: "w-12 h-12 border-2 border-blue-300/50 hover:border-blue-400/70 transition-colors duration-300",
+                      userButtonPopoverCard: "bg-background/80 backdrop-blur-md",
+                      userButtonTrigger: "flex items-center justify-center"
+                    }
+                  }}
+                  afterSignOutUrl="/"
+                />
+              </div>
             </Authenticated>
 
             <Unauthenticated>
@@ -85,6 +88,41 @@ function Header() {
           </div>
         </div>
       </div>
+
+      {/* Add custom CSS to override Clerk's styles */}
+      <style jsx>{`
+        :global(.cl-userButtonBox) {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+        :global(.cl-userButtonTrigger) {
+          width: 38px !important;
+          height: 38px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+        :global(.cl-avatarBox) {
+          width: 38px !important;
+          height: 38px !important;
+          border-radius: 50% !important;
+          border: 2px solid rgba(96, 165, 250, 0.5) !important;
+          transition: border-color 0.3s ease !important;
+        }
+        :global(.cl-avatarBox:hover) {
+          border-color: rgba(96, 165, 250, 0.7) !important;
+        }
+        :global(.cl-userButtonPopoverCard) {
+          background: rgba(255, 255, 255, 0.8) !important;
+          backdrop-filter: blur(12px) !important;
+        }
+        @media (prefers-color-scheme: dark) {
+          :global(.cl-userButtonPopoverCard) {
+            background: rgba(0, 0, 0, 0.8) !important;
+          }
+        }
+      `}</style>
     </header>
   );
 }

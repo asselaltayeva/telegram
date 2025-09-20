@@ -38,7 +38,7 @@ export default function Home() {
                 </div>
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-800 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400">
-                    Your Messaging
+                    TG Messaging
                   </span>
                   <br />
                   <span className="text-foreground">Reimagined</span>
