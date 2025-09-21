@@ -1,10 +1,10 @@
-import {cn} from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 interface LoadingSpinnerProps {
-    size?: "sm" | "md" | "lg",
-    message?: string,
-    className?: string,
-    showMessage?: boolean,
+    size?: "sm" | "md" | "lg";
+    message?: string;
+    className?: string;
+    showMessage?: boolean;
 }
 
 export function LoadingSpinner({
@@ -16,7 +16,7 @@ export function LoadingSpinner({
     const sizeClasses = {
         sm: "w-4 h-4 border-2",
         md: "w-6 h-6 border-2",
-        lg: "w-8 h-8 border-[3px] ",
+        lg: "w-8 h-8 border-[3px]",
     };
 
     const containerPadding = {
@@ -25,38 +25,40 @@ export function LoadingSpinner({
         lg: "min-h-[100px]",
     };
 
-  return (
-    <div
-        className={cn(
-            "flex flex-col items-center justify-center",
-            containerPadding[size],
-            className
-        )}
-    >
+    return (
         <div
             className={cn(
-                "border-muted-foreground/20 border-t-primary rounded-full animate-spin",
-                sizeClasses[size]
+                "flex flex-col items-center justify-center",
+                containerPadding[size],
+                className
             )}
-            role="status"
-            aria-label="Loading"
-        />
+        >
+            <div
+                className={cn(
+                    "border-muted-foreground/20 border-t-primary rounded-full animate-spin",
+                    sizeClasses[size]
+                )}
+                role="status"
+                aria-label={message}
+            />
             {showMessage && (
                 <p className="mt-3 text-sm text-muted-foreground animate-pulse">
                     {message}
                 </p>
             )}
         </div>
-  )
+    );
 }
 
-//Inline spinner for use within chat
+// Inline spinner for use within chat
 export function InlineSpinner({
     size = "sm",
     className,
+    ariaLabel = "Loading",
 }: {
-    size?: "sm" | "md" | "lg",
-    className?: string,
+    size?: "sm" | "md" | "lg";
+    className?: string;
+    ariaLabel?: string;
 }) {
     const sizeClasses = {
         sm: "w-4 h-4 border-2",
@@ -72,7 +74,7 @@ export function InlineSpinner({
                 className
             )}
             role="status"
-            aria-label="Loading"
+            aria-label={ariaLabel}
         />
     );
 }

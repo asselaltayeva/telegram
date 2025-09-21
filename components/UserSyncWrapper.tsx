@@ -24,15 +24,11 @@ function UserSyncWrapper({ children }: { children: React.ReactNode }) {
       setError(null);
 
       const tokenProvider = async () => {
-        if (!user?.id) {
-          throw new Error("User not authenticated");
-        }
-
         const token = await createToken(user.id);
         return token;
       };
 
-      // 1. Save user to convex
+      // 1. Save user to Convex
       await createOrUpdateUser({
         userId: user.id,
         name:
@@ -40,11 +36,11 @@ function UserSyncWrapper({ children }: { children: React.ReactNode }) {
           user.firstName ||
           user.emailAddresses[0]?.emailAddress ||
           "Unknown User",
-        email: user.emailAddresses[0].emailAddress || "",
+        email: user.emailAddresses[0]?.emailAddress || "",
         imageUrl: user.imageUrl || "",
       });
 
-      // Connect user to Stream
+      // 2. Connect user to Stream
       await streamClient.connectUser(
         {
           id: user.id,
@@ -70,6 +66,7 @@ function UserSyncWrapper({ children }: { children: React.ReactNode }) {
   // disconnect user
   const disconnectUser = useCallback(async () => {
     try {
+      console.log("Disconnecting user...");
       await streamClient.disconnectUser();
     } catch (error) {
       console.error("Error disconnecting user from Stream:", error);
@@ -77,20 +74,18 @@ function UserSyncWrapper({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (isUserLoaded) return;
-
-    if (user) {
-      syncUser();
-    } else {
-      disconnectUser();
-      setIsLoading(false);
+    if (isUserLoaded) {
+      if (user) {
+        syncUser();
+      } else {
+        disconnectUser();
+        setIsLoading(false);
+      }
     }
 
     // cleanup function
     return () => {
-      if (user) {
-        disconnectUser();
-      }
+      disconnectUser();
     };
   }, [user, isUserLoaded, syncUser, disconnectUser]);
 
@@ -99,13 +94,13 @@ function UserSyncWrapper({ children }: { children: React.ReactNode }) {
     return (
       <LoadingSpinner
         size="lg"
-        message={!isUserLoaded ? "Loading..." : "Syncing user data..."}
+        message={!isUserLoaded ? "Loading user data..." : "Syncing user data..."}
         className="min-h-screen"
       />
     );
   }
 
-  //error state
+  // error state
   if (error) {
     return (
       <div className="flex-1 items-center justify-center bg-white px-6">
@@ -113,11 +108,18 @@ function UserSyncWrapper({ children }: { children: React.ReactNode }) {
         <p className="text-gray-600 text-center mb-4">{error}</p>
         <p className="text-gray-500 text-sm text-center">
           Please, try restarting the app or contact support if the issue
-          persists
+          persists.
         </p>
+        <button
+          onClick={syncUser}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          Retry
+        </button>
       </div>
     );
   }
+
   return <>{children}</>;
 }
 
