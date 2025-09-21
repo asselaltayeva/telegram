@@ -46,7 +46,7 @@ export default function Home() {
 
                 <p className="text-xl text-muted-foreground max-w-2xl">
                   Telegram is a cloud-based mobile and desktop messaging app
-                  with a focus on security and speed.
+                  with a focus on security and speed. This is a clone app built for educational purposes.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">

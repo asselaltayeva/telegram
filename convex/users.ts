@@ -54,6 +54,6 @@ export const searchUsers = query({
                     user.name.toLowerCase().includes(lowerSearchTerm) ||
                     user.email.toLowerCase().includes(lowerSearchTerm)
             )
-            .slice(0, 20); // limit to 10 results
+            .slice(0, 20); // limit to 20 results
     },
 });
