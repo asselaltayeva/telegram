@@ -3,7 +3,7 @@
 import { api } from "@/convex/_generated/api";
 import { useUser } from "@clerk/nextjs";
 import { useMutation } from "convex/react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 
@@ -14,6 +14,34 @@ function UserSyncWrapper({children}: {children: React.ReactNode}) {
 
     // convex mutation to sync user data
     const createOrUpdateUser = useMutation(api.users.upsertUser);
+
+    const syncUser = useCallback(async () => {
+        if(!user?.id) return;
+
+        try {
+            setIsLoading(true);
+            setError(null);
+            
+            // 1. Save user to convex
+            await createOrUpdateUser({
+                userId: user.id,
+                name: 
+                    user.fullName || 
+                    user.firstName ||
+                    user.emailAddresses[0]?.emailAddress || "Unknown User",
+                email: user.emailAddresses[0].emailAddress || "",
+                imageUrl: user.imageUrl || "",
+            });
+
+            
+        } catch (error) {
+            console.error("Error syncing user data:", error);
+            setError(error instanceof Error ? error.message : "Failed to sync user data");
+        } finally {
+            setIsLoading(false);
+        }
+
+    },[createOrUpdateUser, user]);
 
     // loading state
     if (!isUserLoaded || isLoading){
