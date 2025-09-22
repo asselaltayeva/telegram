@@ -74,12 +74,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               options={options}
               EmptyStateIndicator={() => (
                 <div className="flex flex-col items-center justify-center h-full py-55 px-6 text-center">
-                  <div className="text-5xl mb-6 opacity-30 animate-bounce">
+                  <div className="text-7xl mb-6 opacity-30 animate-bounce drop-shadow-lg">
                     💬
                   </div>
                   <h2 className="text-lg font-semibold mb-2">Ready to chat?</h2>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                    You have no contacts on Telegram yet...
+                    You have no contacts on Telegram yet.
                   </p>
 
                   <div className="space-y-2 w-full">
