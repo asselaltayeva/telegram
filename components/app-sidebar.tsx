@@ -33,18 +33,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   dark:from-slate-900 dark:via-slate-800 dark:to-slate-900
   bg-gradient-to-b from-gray-100 via-gray-50 to-white
 "
-
       {...props}
     >
       {/* Header with user info */}
       <SidebarHeader className="px-4 py-3 border-b border-slate-700/40">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              size="lg"
-              asChild
-              className="rounded-xl"
-            >
+            <SidebarMenuButton size="lg" asChild className="rounded-xl">
               <div className="flex items-center justify-between w-full">
                 <div className="flex flex-col">
                   <span className="text-xs text-muted-foreground">
@@ -79,10 +74,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               options={options}
               EmptyStateIndicator={() => (
                 <div className="flex flex-col items-center justify-center h-full py-55 px-6 text-center">
-                  <div className="text-6xl mb-6 opacity-30 animate-bounce">💬</div>
-                  <h2 className="text-lg font-semibold mb-2">
-                    Ready to chat?
-                  </h2>
+                  <div className="text-6xl mb-6 opacity-30 animate-bounce">
+                    💬
+                  </div>
+                  <h2 className="text-lg font-semibold mb-2">Ready to chat?</h2>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                     You have no contacts on Telegram yet
                   </p>
