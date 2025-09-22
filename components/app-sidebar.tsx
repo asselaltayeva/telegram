@@ -36,7 +36,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       {...props}
     >
       {/* Header with user info */}
-      <SidebarHeader className="px-4 py-3 border-b border-slate-700/40">
+      <SidebarHeader className="px-4 py-2 border-b border-slate-700/40">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild className="rounded-xl">
