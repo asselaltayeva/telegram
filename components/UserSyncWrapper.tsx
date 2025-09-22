@@ -94,7 +94,7 @@ function UserSyncWrapper({ children }: { children: React.ReactNode }) {
     return (
       <LoadingSpinner
         size="lg"
-        message={!isUserLoaded ? "Loading user data..." : "Syncing user data..."}
+        message={!isUserLoaded ? "Loading your data..." : "Syncing your data..."}
         className="min-h-screen"
       />
     );
