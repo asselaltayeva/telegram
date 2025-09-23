@@ -75,7 +75,7 @@ function Dashboard() {
     />
   </div>
   <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-white/10 "></div>
-  <div className="relative z-10 bg-white/10 rounded-xl p-12 flex flex-col items-center justify-center text-center shadow-2xl">
+  <div className="relative z-10 bg-black/20 rounded-xl p-12 flex flex-col items-center justify-center text-center shadow-2xl">
     <h2 className="text-2xl font-semibold text-white mb-2">
       No Chat Selected
     </h2>

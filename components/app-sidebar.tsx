@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Button } from "./ui/button";
 import { ChannelFilters, ChannelSort } from "stream-chat";
+import { NewChatDialog } from "./NewChatDialog";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { user } = useUser();
@@ -59,6 +60,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu className="gap-1 p-3">
+            <NewChatDialog>
             <Button
               className="w-full rounded-xl font-medium shadow-md hover:shadow-lg transition-transform"
               variant="default"
@@ -66,7 +68,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <MessageSquarePlus className="h-4 w-4 mr-1" />
               Start New Chat
             </Button>
-
+            </NewChatDialog>
             {/* Channel List */}
             <ChannelList
               filters={filters}
