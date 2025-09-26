@@ -14,19 +14,43 @@ import {
 import { Channel, useChatContext, Window } from "stream-chat-react";
 import Beams from "@/components/Beams";
 
-const handleCall = () => {
-  console.log("Starting a video call...");
-};
-
-const handleLeaveChat = () => {
-  console.log("Leaving...");
-};
 
 function Dashboard() {
   const { user } = useUser();
   const router = useRouter();
   const { channel, setActiveChannel } = useChatContext();
   const { setOpen } = useSidebar();
+
+  const handleLeaveChat = async () => {
+    if (!channel || !user?.id){
+      console.log("No active channel or user");
+      return;
+    }
+
+    // Confirm before leaving
+    const confirm = window.confirm("Are you sure you want to leave this chat?");
+    if (!confirm) return;
+
+    try {
+      // Remove user from channel members
+      await channel.removeMembers([user.id]);
+
+      // clear active channel
+      setActiveChannel(undefined);
+
+      // Redirect to dashboard after leaving
+      router.push("/dashboard");
+    } catch (error) {
+      console.error("Error leaving the chat:", error);
+    }
+  };
+
+  const handleCall = async () => {
+    if(!channel) return;
+    router.push(`/dashboard/video-call/${channel.id}`);
+    setOpen(false);
+  };
+  
   return (
     <div className="flex flex-col w-full flex-1">
       {channel ? (

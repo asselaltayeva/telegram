@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { MessageSquarePlus, Users, Search } from "lucide-react";
+import { MessageSquarePlus, Users } from "lucide-react";
 import { useUser, UserButton } from "@clerk/nextjs";
 import { ChannelList } from "stream-chat-react";
 import {
@@ -59,7 +59,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarMenu className="gap-1 p-3">
+          <SidebarMenu className="gap-4 p-1">
             <NewChatDialog>
             <Button
               className="w-full rounded-xl font-medium shadow-md hover:shadow-lg transition-transform"
@@ -70,6 +70,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </Button>
             </NewChatDialog>
             {/* Channel List */}
+
+          
+            
             <ChannelList
               filters={filters}
               sort={sort}
