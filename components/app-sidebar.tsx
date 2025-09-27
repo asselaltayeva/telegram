@@ -36,7 +36,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 "
       {...props}
     >
-      {/* Header with user info */}
       <SidebarHeader className="px-4 py-2 border-b border-slate-700/40">
         <SidebarMenu>
           <SidebarMenuItem>
@@ -57,50 +56,50 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent className="flex flex-col h-full">
         <SidebarGroup>
-          <SidebarMenu className="gap-4 p-1">
+          <SidebarMenu className="p-1">
             <NewChatDialog>
-            <Button
-              className="w-full rounded-xl font-medium shadow-md hover:shadow-lg transition-transform"
-              variant="default"
-            >
-              <MessageSquarePlus className="h-4 w-4 mr-1" />
-              Start New Chat
-            </Button>
+              <Button
+                className="w-full rounded-xl font-medium shadow-md hover:shadow-lg transition-transform"
+                variant="default"
+              >
+                <MessageSquarePlus className="h-4 w-4 mr-1" />
+                Start New Chat
+              </Button>
             </NewChatDialog>
-            {/* Channel List */}
-
-          
-            
-            <ChannelList
-              filters={filters}
-              sort={sort}
-              options={options}
-              EmptyStateIndicator={() => (
-                <div className="flex flex-col items-center justify-center h-full py-55 px-6 text-center">
-                  <div className="text-7xl mb-6 opacity-30 animate-bounce drop-shadow-lg">
-                    💬
-                  </div>
-                  <h2 className="text-lg font-semibold mb-2">Ready to chat?</h2>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                    You have no contacts on Telegram yet.
-                  </p>
-
-                  <div className="space-y-2 w-full">
-                    <Button
-                      variant="outline"
-                      className="w-full justify-center rounded-xl"
-                    >
-                      <Users className="h-4 w-4 mr-1" />
-                      Invite Friends
-                    </Button>
-                  </div>
-                </div>
-              )}
-            />
           </SidebarMenu>
         </SidebarGroup>
+
+        {/* Channel List */}
+        <div className="flex-1 overflow-y-auto">
+          <ChannelList
+            filters={filters}
+            sort={sort}
+            options={options}
+            EmptyStateIndicator={() => (
+              <div className="flex flex-col items-center justify-center h-full py-12 px-6 text-center">
+                <div className="text-7xl mb-6 opacity-30 animate-bounce drop-shadow-lg">
+                  💬
+                </div>
+                <h2 className="text-lg font-semibold mb-2">Ready to chat?</h2>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  You have no contacts on Telegram yet.
+                </p>
+
+                <div className="space-y-2 w-full">
+                  <Button
+                    variant="outline"
+                    className="w-full justify-center rounded-xl"
+                  >
+                    <Users className="h-4 w-4 mr-1" />
+                    Invite Friends
+                  </Button>
+                </div>
+              </div>
+            )}
+          />
+        </div>
       </SidebarContent>
     </Sidebar>
   );

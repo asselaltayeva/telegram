@@ -91,6 +91,7 @@ function VideoCall() {
       </div>
 
       {participants.length === 1 && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
         <div className="bg-white rounded-2xl p-8 max-w-lg w-full mx-4 shadow-2xl">
           <div className="text-center space-y-6">
             <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
@@ -131,7 +132,12 @@ function VideoCall() {
                     </button>
                 </div>
             </div>
+
+            <p className="text-sm text-gray-500"> 
+                Others can using this link.
+            </p>
           </div>
+        </div>
         </div>
       )}
     </div>

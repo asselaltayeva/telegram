@@ -12,8 +12,6 @@ import {
   Thread,
 } from "stream-chat-react";
 import { Channel, useChatContext, Window } from "stream-chat-react";
-import Beams from "@/components/Beams";
-
 
 function Dashboard() {
   const { user } = useUser();
@@ -22,7 +20,7 @@ function Dashboard() {
   const { setOpen } = useSidebar();
 
   const handleLeaveChat = async () => {
-    if (!channel || !user?.id){
+    if (!channel || !user?.id) {
       console.log("No active channel or user");
       return;
     }
@@ -35,7 +33,7 @@ function Dashboard() {
       // Remove user from channel members
       await channel.removeMembers([user.id]);
 
-      // clear active channel
+      // Clear active channel
       setActiveChannel(undefined);
 
       // Redirect to dashboard after leaving
@@ -46,11 +44,11 @@ function Dashboard() {
   };
 
   const handleCall = async () => {
-    if(!channel) return;
+    if (!channel) return;
     router.push(`/dashboard/video-call/${channel.id}`);
     setOpen(false);
   };
-  
+
   return (
     <div className="flex flex-col w-full flex-1">
       {channel ? (
@@ -72,42 +70,28 @@ function Dashboard() {
                 <Button
                   variant="outline"
                   onClick={handleLeaveChat}
-                  className="text-ted-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10"
+                  className="text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10"
                 >
                   <LogOutIcon className="w-4 h-4 mr-1" />
                   Leave Chat
                 </Button>
               </div>
-              </div>
+            </div>
 
-              <MessageList />
-              <div className="sticky bottom-0 w-full">
-                <MessageInput />
-              </div>
-            
+            <MessageList />
+            <div className="sticky bottom-0 w-full">
+              <MessageInput />
+            </div>
           </Window>
           <Thread />
         </Channel>
       ) : (
         <div className="relative rounded-xl overflow-hidden flex flex-1 items-center justify-center w-full h-96">
-          <div className="absolute inset-0">
-            <Beams
-              beamWidth={4.6}
-              beamHeight={29}
-              beamNumber={23} // fewer beams
-              lightColor="#ffffff" // softer
-              speed={2}
-              noiseIntensity={1.75}
-              scale={0.122}
-              rotation={30}
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-white/10 "></div>
-          <div className="relative z-10 bg-black/20 rounded-xl p-12 flex flex-col items-center justify-center text-center shadow-2xl">
-            <h2 className="text-2xl font-semibold text-white mb-2">
+          <div className="relative z-10 bg-white/30 rounded-xl p-12 flex flex-col items-center justify-center text-center">
+            <h2 className="text-2xl font-semibold text-black mb-2">
               No Chat Selected
             </h2>
-            <p className="text-white/70 text-sm">
+            <p className="text-black text-sm">
               Start a new chat or select an existing one from the sidebar.
             </p>
           </div>
@@ -116,4 +100,5 @@ function Dashboard() {
     </div>
   );
 }
+
 export default Dashboard;
