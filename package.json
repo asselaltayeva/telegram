@@ -18,6 +18,7 @@
     "@react-three/fiber": "^9.3.0",
     "@splinetool/react-spline": "^4.1.0",
     "@splinetool/runtime": "^1.10.62",
+    "@stream-io/video-react-sdk": "^1.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "convex": "^1.27.0",
