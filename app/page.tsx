@@ -362,13 +362,13 @@ export default function Home() {
                   Feedback
                 </a>
                 <a
-                  href="#"
+                  href="https://t.me/asselia7"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Support
                 </a>
                 <a
-                  href="#"
+                  href="https://t.me/asselia7"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Contact
@@ -376,7 +376,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-3">
                 <a
-                  href="https://github.com/yourusername"
+                  href="https://github.com/asselaltayeva"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 rounded-full bg-muted flex items-center justify-center hover:bg-muted/50 transition-colors"
